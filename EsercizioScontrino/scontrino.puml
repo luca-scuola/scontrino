@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+ScontrinoGestione ..|> Scontrino
+ScontrinoElemento "1" *-- "1" Prodotto
+Catalogo "1" *-- "N" Prodotto
+Scontrino "1" *-- "N" ScontrinoElemento
+
+
+
+class Scontrino {
+    - elementi: List<ScontrinoElemento>;
+
+    + Scontrino(): void;
+    + add(e: ScontrinoElemento): void;
+    + remove(index: int): boolean;
+    + totaleScontrino(): float;
+    + printAll(): void;
+}
+
+class ScontrinoElemento {
+    - prodotto: Prodotto;
+    - quantita: int;
+
+    + getProdotto(): Prodotto;
+    + setProdotto(): void;
+    + getQuantita(): int;
+    + setQuantita(): void;
+    + ScontrinoElemento(prodotto : Prodotto, quantita: int): void;
+    + toString(): String;
+}
+
+class Catalogo {
+    - prodotti: List<Prodotto>;
+
+    + Catalogo(): void;
+    + getInstance(): Catalogo;
+    + getProdotti(): List<Prodotto>;
+    + printAll(): void;
+}
+
+class Prodotto {
+    - nomeProdotto: String;
+    - prezzo: float;
+
+    + Prodotto(nomeProdotto: String, prezzo: float): void;
+    + NomeProdotto(): String;
+    + toString(): String;
+}
+
+@enduml
